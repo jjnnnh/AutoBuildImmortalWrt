@@ -18,6 +18,13 @@ else
 fi
 # 无需判断网卡数量 因为glinet是多网口
 uci set network.lan.ipaddr='192.168.79.1'
+# 设置路由器主机名映射
+uci add dhcp domain
+uci set "dhcp.@domain[-1].name=lyq.jjnnnh.website"
+uci set "dhcp.@domain[-1].ip=192.168.79.1"
+uci add dhcp domain
+uci set "dhcp.@domain[-1].name=gl-mt3000.jjnnnh.website"
+uci set "dhcp.@domain[-1].ip=192.168.79.1"
 echo "set 192.168.79.1 at $(date)" >> $LOGFILE
 # 判断是否启用 PPPoE
 echo "print enable_pppoe value=== $enable_pppoe" >> $LOGFILE
